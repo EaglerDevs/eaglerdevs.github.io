@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waltuhszn 1 pilot</title>
+    <link href="https://cdn.plyr.io/3.6.6/plyr.css" rel="stylesheet" />
+    <script src="https://cdn.plyr.io/3.6.6/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .taskbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 100px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .taskbar button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            width: 80%;
+        }
+
+        .taskbar button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="player" class="plyr" controls autoplay></video>
+
+    <div class="taskbar">
+        <button onclick="changeEpisode('https://veltroncloud49.xyz/file1/URvacNgbRRt9YqnSe2X1OhO1bexc2tfhNmwmKw4E4CCThu0kDGB9AV+DL2I84pcBiL79x0ntvPxkTnz6y16gd+ii9frl98+3CtLGWmmuifEDsVqW9JtyEwwCp5yw14oGPUJvQ40XBnQ1C2RHg8fJ7KmlfNclLalMfWHzormJjXg=/cGxheWxpc3QubTN1OA==.m3u8')">Episode 1</button>
+        <button onclick="changeEpisode('https://example.com')">example</button>
+    </div>
+
+    <script>
+        const player = new Plyr('#player');
+
+        if(Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource('https://gentlebreeze85.xyz/file2/9AcyTBarnNOOu1O7UqhWSNMol7eCIVzQEWfvMvY6KaQ+FJVpeLz7ca8Sh6+X5Mxz38~lm~~oVUZcdeXaUDqa2WzbO+i7sqvmFcSY3MvsvN2Eo7julodcI6dQ5hZU6zAWD9ugAZr0EY9ebW7Ez5oOmwjByIeuzsrXGfAv0INLzEE=/cGxheWxpc3QubTN1OA==.m3u8');
+            hls.attachMedia(player.media);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                player.play();
+            });
+        } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+            player.src = 'https://veltroncloud49.xyz/file1/URvacNgbRRt9YqnSe2X1OhO1bexc2tfhNmwmKw4E4CCThu0kDGB9AV+DL2I84pcBiL79x0ntvPxkTnz6y16gd+ii9frl98+3CtLGWmmuifEDsVqW9JtyEwwCp5yw14oGPUJvQ40XBnQ1C2RHg8fJ7KmlfNclLalMfWHzormJjXg=/cGxheWxpc3QubTN1OA==.m3u8';
+        }
+
+        function changeEpisode(url) {
+            if(Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(player.media);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    player.play();
+                });
+            } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+                player.src = url;
+            }
+        }
+    </script>
+
+</body>
+</html>
